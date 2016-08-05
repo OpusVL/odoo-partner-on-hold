@@ -30,7 +30,7 @@ class AccountInvoice(models.Model):
     def invoice_validate(self):
         if self.partner_id.on_hold:
             raise Warning('{} on hold'.format(self._customer_or_supplier()))
-        super(AccountInvoice, self).invoice_validate()
+        return super(AccountInvoice, self).invoice_validate()
 
     def _customer_or_supplier(self):
         return 'Customer' if self.type.startswith('out') else 'Supplier'
